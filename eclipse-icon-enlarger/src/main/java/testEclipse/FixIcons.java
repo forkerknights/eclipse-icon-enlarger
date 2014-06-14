@@ -195,10 +195,10 @@ public class FixIcons {
 			*/
 			
 		    AffineTransform scaleTransform = AffineTransform.getScaleInstance(2, 2);
-		    AffineTransformOp bilinearScaleOp = new AffineTransformOp(scaleTransform, AffineTransformOp.TYPE_BILINEAR);
+		    AffineTransformOp bilinearScaleOp = new AffineTransformOp(scaleTransform, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
 		    BufferedImage rescaledOut= bilinearScaleOp.filter(
 		            out,
-		            new BufferedImage(outWidth, outHeight, out.getType()));
+		            new BufferedImage(outWidth, outHeight, BufferedImage.TYPE_INT_ARGB));
 			
 			imageWriteStarted = true;
 			
