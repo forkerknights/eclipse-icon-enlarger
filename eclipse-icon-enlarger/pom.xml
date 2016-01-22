@@ -16,6 +16,29 @@
 					<source>1.6</source>
 				</configuration>
 			</plugin>
+			<plugin>
+        		<artifactId>maven-assembly-plugin</artifactId>
+       			 <executions>
+          			<execution>
+            				<phase>package</phase>
+            				<goals>
+              					<goal>single</goal>
+            				</goals>
+          			</execution>
+       			</executions>
+       			<configuration>
+          			<descriptorRefs>
+            			<descriptorRef>jar-with-dependencies</descriptorRef>
+          			</descriptorRefs>
+          			<archive>
+            			<index>true</index>
+            			<manifest>
+              				<addClasspath>true</addClasspath>
+              				<mainClass>testEclipse.FixIcons</mainClass>
+            			</manifest>
+          			</archive>
+       			</configuration>
+        		</plugin>
 		</plugins>
 
 	</build>

@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.GnuParser;
+import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
@@ -39,6 +40,14 @@ public class FixIcons {
 
 	private static final Logger logger = Logger.getLogger(FixIcons.class);
 
+	
+	private static void printHelpAndExit(Options options)
+  {
+    HelpFormatter formatter = new HelpFormatter();
+    formatter.printHelp("FixIcons", options);
+    System.exit(2);
+  }
+	
 	public static final void main(String[] args) {
 		try {
 
@@ -54,6 +63,11 @@ public class FixIcons {
 
 			GnuParser parser = new GnuParser();
 			CommandLine commandLine = parser.parse(options, args);
+			
+			if(!commandLine.hasOption("baseDir") || !commandLine.hasOption("outputDir")) {
+			  printHelpAndExit(options);
+			}
+			
 			String baseDirArg = commandLine.getOptionValue("b");
 			logger.info("Base directory: " + baseDirArg);
 
